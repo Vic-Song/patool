@@ -1,0 +1,11 @@
+<h1>Home#userpanel</h1>
+<p>Find me in app/views/home/userpanel.html.erb</p>
+<% results = Result.where(user_id:current_user.id)%>
+<% surveys = [] %>
+<% results.each do |r|%>
+<% if !surveys.include? Paper.find(r.paper_id).survey_id  %>
+<% surveys.insert(surveys.length,Paper.find(r.paper_id).survey_id) %>
+<% end %>
+<% end %>
+<p>已分析文章数：<%= results.count%></p> 
+<p>项目数：<%= surveys.length%></p> 

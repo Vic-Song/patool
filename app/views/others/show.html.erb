@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @other.title %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @other.question %>
+</p>
+
+<%= link_to 'Edit', edit_other_path(@other) %> |
+<%= link_to 'Back', others_path %>

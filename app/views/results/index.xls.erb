@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="<%= current_user.email %>">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Title</Data></Cell>
+        <% @survey.questions.each do |q|%>
+        <Cell><Data ss:Type="String"><%= q.title%></Data></Cell>
+        <% end %>
+      </Row>
+    <% @results.each do |result| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= Paper.find(result.paper_id).title %></Data></Cell>
+        <% for i in 1..@survey.questions.count %>
+        <% if Question.find(i+@survey.questions.first.id-1).style == 0%>
+          <% rs = result[$n2w[i].to_s].tr('[]\" ','').split(',') %>
+          <% if rs[0].include?('o') %>
+          <% rs[0] = Other.find(rs[0].delete('o')).title %>
+          <% else %>
+          <% rs[0] = Answer.find(rs[0]).title %>
+          <% end %>
+        <% elsif Question.find(i+@survey.questions.first.id-1).style == 1%>
+          <% rs = result[$n2w[i].to_s].tr('[]\" ','').split(',') %>
+          <% for i in 0..rs.length-2 %>
+            <% if rs[i].include?('o')%>
+            <% rs[i] = Other.find(rs[i].delete('o')).title %>
+            <% else %>
+            <% rs[i] = Answer.find(rs[i]).title %>
+            <% end %>
+          <% end %>
+          <% if rs[-1].to_i != 0%>
+            <% rs[-1] = Answer.find(rs[-1]).title %>
+          <% end %>
+        <% elsif Question.find(i+@survey.questions.first.id-1).style == 2%>
+          <% rs = result[$n2w[i].to_s].tr('[]\" ','').split(',') %>
+        <% end %>
+        <Cell><Data ss:Type="String"><%= rs %></Data></Cell>
+        <% end %>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
+

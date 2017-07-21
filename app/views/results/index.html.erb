@@ -1,0 +1,134 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Results</h1>
+<%= @survey %>
+<%= @ids %>
+<% @papers.each do |p| %>
+<%= p.id %>
+<% end %>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>One</th>
+      <th>Two</th>
+      <th>Three</th>
+      <th>Four</th>
+      <th>Five</th>
+      <th>Six</th>
+      <th>Seven</th>
+      <th>Eight</th>
+      <th>Night</th>
+      <th>Ten</th>
+      <th>Eleven</th>
+      <th>Twelve</th>
+      <th>Thirteen</th>
+      <th>Fourteen</th>
+      <th>Fifteen</th>
+      <th>Sixteen</th>
+      <th>Seventeen</th>
+      <th>Eighteen</th>
+      <th>Nighteen</th>
+      <th>Twenty</th>
+      <th>Twentyone</th>
+      <th>Twentytwo</th>
+      <th>Twentythree</th>
+      <th>Twentyfour</th>
+      <th>Twentyfive</th>
+      <th>Twentysix</th>
+      <th>Twentyseven</th>
+      <th>Twentyeight</th>
+      <th>Twentynine</th>
+      <th>Thirty</th>
+      <th>Thirtyone</th>
+      <th>Thirtytwo</th>
+      <th>Thirtythree</th>
+      <th>Thirtyfour</th>
+      <th>Thirtyfive</th>
+      <th>Thirtysix</th>
+      <th>Thirtyseven</th>
+      <th>Thirtyeight</th>
+      <th>Thirtynine</th>
+      <th>Fourty</th>
+      <th>Fourtyone</th>
+      <th>Fourtytwo</th>
+      <th>Fourtythree</th>
+      <th>Fourtyfour</th>
+      <th>Fourtyfive</th>
+      <th>Fourtysix</th>
+      <th>Fourtyseven</th>
+      <th>Fourtyeight</th>
+      <th>Fourtynine</th>
+      <th>Fifty</th>
+      <th>Paper</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result.one %></td>
+        <td><%= result.two %></td>
+        <td><%= result.three %></td>
+        <td><%= result.four %></td>
+        <td><%= result.five %></td>
+        <td><%= result.six %></td>
+        <td><%= result.seven %></td>
+        <td><%= result.eight %></td>
+        <td><%= result.night %></td>
+        <td><%= result.ten %></td>
+        <td><%= result.eleven %></td>
+        <td><%= result.twelve %></td>
+        <td><%= result.thirteen %></td>
+        <td><%= result.fourteen %></td>
+        <td><%= result.fifteen %></td>
+        <td><%= result.sixteen %></td>
+        <td><%= result.seventeen %></td>
+        <td><%= result.eighteen %></td>
+        <td><%= result.nighteen %></td>
+        <td><%= result.twenty %></td>
+        <td><%= result.twentyone %></td>
+        <td><%= result.twentytwo %></td>
+        <td><%= result.twentythree %></td>
+        <td><%= result.twentyfour %></td>
+        <td><%= result.twentyfive %></td>
+        <td><%= result.twentysix %></td>
+        <td><%= result.twentyseven %></td>
+        <td><%= result.twentyeight %></td>
+        <td><%= result.twentynine %></td>
+        <td><%= result.thirty %></td>
+        <td><%= result.thirtyone %></td>
+        <td><%= result.thirtytwo %></td>
+        <td><%= result.thirtythree %></td>
+        <td><%= result.thirtyfour %></td>
+        <td><%= result.thirtyfive %></td>
+        <td><%= result.thirtysix %></td>
+        <td><%= result.thirtyseven %></td>
+        <td><%= result.thirtyeight %></td>
+        <td><%= result.thirtynine %></td>
+        <td><%= result.fourty %></td>
+        <td><%= result.fourtyone %></td>
+        <td><%= result.fourtytwo %></td>
+        <td><%= result.fourtythree %></td>
+        <td><%= result.fourtyfour %></td>
+        <td><%= result.fourtyfive %></td>
+        <td><%= result.fourtysix %></td>
+        <td><%= result.fourtyseven %></td>
+        <td><%= result.fourtyeight %></td>
+        <td><%= result.fourtynine %></td>
+        <td><%= result.fifty %></td>
+        <td><%= result.paper %></td>
+        <td><%= link_to 'Show', result %></td>
+        <td><%= link_to 'Edit', edit_result_path(result) %></td>
+        <td><%= link_to 'Destroy', result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Result', new_result_path %>

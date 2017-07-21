@@ -1,0 +1,70 @@
+<div class="row" >
+<div class="col-lg-4 col-lg-offset-4">
+
+<div style="min-height: 764px">
+
+<%= form_for(@paper) do |f| %>
+  <% if @paper.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@paper.errors.count, "error") %> prohibited this paper from being saved:</h2>
+
+      <ul>
+      <% @paper.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title, "标题" %><br>
+    <%= f.text_field :title,class:"form-control"  %>
+  </div>
+  <div class="field">
+    <%= f.label :authorName1,"第一作者" %><br>
+    <%= f.text_field :authorName1,class:"form-control"  %>
+  </div>
+  <div class="field">
+    <%= f.label :authorName2,"第二作者" %><br>
+    <%= f.text_field :authorName2,class:"form-control"  %>
+  </div>
+  <div class="field">
+    <%= f.label :authorName3,"第三作者" %><br>
+    <%= f.text_field :authorName3,class:"form-control"  %>
+  </div>
+  <div class="field">
+    <%= f.label :authorName4,"第四作者" %><br>
+    <%= f.text_field :authorName4,class:"form-control"  %>
+  </div>
+  <div class="field">
+    <%= f.label :authorName5,"第五作者" %><br>
+    <%= f.text_field :authorName5,class:"form-control"  %>
+  </div>
+  <div class="field">
+    <%= f.label :comAuthor,"通信作者" %><br>
+    <%= f.text_field :comAuthor,class:"form-control"  %>
+  </div>
+  <div class="field">
+    <%= f.label :comAddr,"通信地址" %><br>
+    <%= f.text_area :comAddr,class:"form-control"  %>
+  </div>
+  <div class="field">
+    <%= f.label :year,"发表年份" %><br>
+    <%= f.text_field :year,class:"form-control"  %>
+  </div>
+  <div class="field">
+    <%= f.label :journal,"期刊名" %><br>
+    <%= f.text_field :journal,class:"form-control"  %>
+  </div>
+  <div class="field">
+    <%= f.label :survey_id %><br>
+    <%= f.text_field :survey_id,class:"form-control",value:"#{params[:survey_id]}",readonly:true  %>
+  </div>
+  <div class="actions">
+    <%= f.submit "确定", class:"btn btn-primary btn-lg"  %>
+  </div>
+<% end %>
+
+</div>
+</div>
+</div>

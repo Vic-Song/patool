@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  authorName1: MyString
+  authorName2: MyString
+  authorName3: MyString
+  authorName4: MyString
+  authorName5: MyString
+  comAuthor: MyString
+  comAddr: MyText
+  year: MyString
+  journal: MyString
+  survey_id: 
+
+two:
+  title: MyString
+  authorName1: MyString
+  authorName2: MyString
+  authorName3: MyString
+  authorName4: MyString
+  authorName5: MyString
+  comAuthor: MyString
+  comAddr: MyText
+  year: MyString
+  journal: MyString
+  survey_id: 

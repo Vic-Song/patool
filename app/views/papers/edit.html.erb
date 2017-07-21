@@ -1,0 +1,124 @@
+<!-- <h1>Editing Paper</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @paper %> |
+<%= link_to 'Back', papers_path %> -->
+ <div class="container" style="min-height: 880px">
+<div class="page-header text-center">
+       <h1><%= @survey.title %></h1>
+</div>
+<div class="row">
+  <div  class="col-lg-8" >
+  <p class="h4 text-center">问题</p>
+<!-- 
+  <%= $n2w.index('three') %>  <%= $n2w[1] %>
+
+<%= @result['one'] %> type:<%= @result.one.class %> split:<%= @result.one.tr('[]\"','').split(',')[0].delete'o' %>   
+  <% @result.attributes.each do |attr_name, attr_value| %>
+  <div class="container">
+    <%= attr_name %>: <%= attr_value %>
+  </div>
+<% end %>
+ -->
+
+  <% @survey.questions.each do |q|%>
+  <% @rs = @result[$n2w[q.id-q.survey.questions.first.id+1]].tr('[]\" ','').split(',') %>
+  <p class="h4"><%= q.id-q.survey.questions.first.id+1 %>.  <%= q.title%></p>
+  <div class="thumbnail " name="" style="background-color: #f7f7f7">
+    
+    <% if q.style==0 %>
+     <% if @rs[0].include?('o') %>
+      <% q.answers.each do |a|%>
+        <label>
+          <input type="radio" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="a<%= a.id%>" value="<%= a.id%>"  disabled>
+          <%= a.title%> 
+        </label><br/>
+        <% end %>
+        <% q.others.each do |o|%>
+            <label >
+            <input type="radio" aria-label="" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="o<%= o.id%>" value="o<%= o.id%>" disabled checked> 其他
+            </label>
+            <input type="text" class="form-control" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="o<%= o.id%>"  placeholder="<%= o.title%>" value="<%= @rs[1] %>" readonly >
+        <% end %>
+
+      <% else %>
+
+      <% q.answers.each do |a|%>
+      <% if @rs[0].to_i == a.id %>
+        <label>
+          <input type="radio" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="a<%= a.id%>" value="<%= a.id%>"  disabled checked>
+          <%= a.title%> 
+        </label><br/>
+        <% else %>
+         <label>
+          <input type="radio" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="a<%= a.id%>" value="<%= a.id%>"  disabled>
+          <%= a.title%> 
+        </label><br/>
+        <% end %>
+        <% end %>
+        <% q.others.each do |o|%>
+            <label >
+            <input type="radio" aria-label="" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="o<%= o.id%>" value="o<%= o.id%>" disabled > 其他
+            </label>
+            <input type="text" class="form-control" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="o<%= o.id%>"  placeholder="<%= o.title%>"  readonly >
+        <% end %>
+
+      <% end %>
+
+    <% elsif q.style==1 %>
+      <% q.answers.each do |a|%>
+      <% if @rs.include?(a.id.to_s)%>
+       <label>
+          <input type="checkbox" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="<%= a.id%>" value="<%= a.id%>"  checked disabled> 
+          <%= a.title%>
+      </label><br/>
+      <% else %>
+       <label>
+          <input type="checkbox" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="<%= a.id%>" value="<%= a.id%>"  disabled>
+          <%= a.title%>
+      </label><br/>
+      <% end %>
+      <% end %>
+        <% q.others.each do |o|%>
+        <% if @rs[-2] == 'o'+o.id.to_s %>
+             <label >
+             <input type="checkbox" aria-label="" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="o<%= o.id%>"  value="o<%= o.id%>" disabled checked> 其他
+             </label>
+             <input type="text" class="form-control" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="o<%= o.id%>"  placeholder="<%= o.title%>" value="<%= @rs[-1]%>" readonly>
+        <% else %>
+            <label >
+             <input type="checkbox" aria-label="" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="o<%= o.id%>"  value="o<%= o.id%>" disabled > 其他
+             </label>
+             <input type="text" class="form-control" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="o<%= o.id%>"  placeholder="<%= o.title%>" value="" readonly>
+        <% end %>
+        <% end %>
+
+    <% elsif q.style==2 %>
+      <% q.answers.each do |a|%>
+      <textarea  class="form-control" name="<%= q.id-q.survey.questions.first.id+1 %>" rows="3" placeholder="<%= @rs[0] %>"  readonly></textarea>
+      <% end %>
+    <% end %>
+    
+    </div>
+  <% end %>
+  </div>
+  <div class="col-lg-4" style="border-style: dotted;">
+    <p class="h4 text-center">文献基本信息</p>
+    <p><strong> 题目：</strong><%= @paper.title%></p> 
+    <p><strong> 第一作者：</strong><%= @paper.authorName1%></p> 
+    <p><strong> 第二作者：</strong><%= @paper.authorName2%></p> 
+    <p><strong> 第三作者：</strong><%= @paper.authorName3%></p> 
+    <p><strong> 第四作者：</strong><%= @paper.authorName4%></p>  
+    <p><strong> 第五作者：</strong><%= @paper.authorName5%></p> 
+    <p><strong> 通信作者：</strong><%= @paper.comAuthor%></p> 
+    <p><strong> 通信地址：</strong><%= @paper.comAddr%></p> 
+    <p><strong> 发表年份：</strong><%= @paper.year%></p> 
+    <p><strong> 期刊名：</strong><%= @paper.journal%></p>  
+
+
+  </div>
+</div>
+
+</div>
+

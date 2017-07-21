@@ -1,0 +1,128 @@
+<!-- <p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @paper.title %>
+</p>
+
+<p>
+  <strong>Authorname1:</strong>
+  <%= @paper.authorName1 %>
+</p>
+
+<p>
+  <strong>Authorname2:</strong>
+  <%= @paper.authorName2 %>
+</p>
+
+<p>
+  <strong>Authorname3:</strong>
+  <%= @paper.authorName3 %>
+</p>
+
+<p>
+  <strong>Authorname4:</strong>
+  <%= @paper.authorName4 %>
+</p>
+
+<p>
+  <strong>Authorname5:</strong>
+  <%= @paper.authorName5 %>
+</p>
+
+<p>
+  <strong>Comauthor:</strong>
+  <%= @paper.comAuthor %>
+</p>
+
+<p>
+  <strong>Comaddr:</strong>
+  <%= @paper.comAddr %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @paper.year %>
+</p>
+
+<p>
+  <strong>Journal:</strong>
+  <%= @paper.journal %>
+</p>
+
+<p>
+  <strong>Survey:</strong>
+  <%= @paper.survey %>
+</p>
+
+<%= link_to 'Edit', edit_paper_path(@paper) %> |
+<%= link_to 'Back', papers_path %>
+ -->
+
+ <div class="container" style="min-height: 880px">
+<div class="page-header text-center">
+       <h1><%= @survey.title %></h1>
+</div>
+<div class="row">
+  <div  class="col-lg-8" >
+  <p class="h4 text-center">问题</p>
+  <form action="/api/v1/records/index" method="get">
+  <% @survey.questions.each do |q|%>
+  <p class="h4"><%= q.id-q.survey.questions.first.id+1 %>.  <%= q.title%></p>
+  <div class="thumbnail " name="" style="background-color: #f7f7f7">
+    <% if q.style==0%>
+      <% q.answers.each do |a|%>
+        <label>
+          <input type="radio" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="a<%= a.id%>" value="<%= a.id%>" >
+          <%= a.title%>
+        </label><br/>
+        <% end %>
+        <% q.others.each do |o|%>
+            <label >
+            <input type="radio" aria-label="" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="o<%= o.id%>" value="o<%= o.id%>"> 其他
+            </label>
+            <input type="text" class="form-control" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="o<%= o.id%>"  placeholder="<%= o.title%>" >
+        <% end %>
+    <% elsif q.style==1%>
+      <% q.answers.each do |a|%>
+      <label>
+          <input type="checkbox" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="<%= a.id%>" value="<%= a.id%>" >
+          <%= a.title%>
+      </label><br/>
+      <% end %>
+        <% q.others.each do |o|%>
+             <label >
+             <input type="checkbox" aria-label="" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="o<%= o.id%>"  value="o<%= o.id%>"> 其他
+             </label>
+            <input type="text" class="form-control" name="<%= q.id-q.survey.questions.first.id+1 %>[]" id="o<%= o.id%>"  placeholder="<%= o.title%>" >
+        <% end %>
+    <% elsif q.style==2 %>
+      <% q.answers.each do |a|%>
+      <textarea  class="form-control" name="<%= q.id-q.survey.questions.first.id+1 %>[]" rows="3" placeholder="<%= a.title%>"></textarea>
+      <% end %>
+    <% end %>
+    </div>
+  <% end %>
+  <input type="text" class="form-control hidden" name="paper_id" value="<%= @paper.id%>" >
+  <input type="text" class="form-control hidden" name="user_id" value="<%= current_user.id%>" >
+  <p class="text-center"> <input type="submit" value="提交结果" class="btn btn-primary"/></p>
+  </form>
+  </div>
+  <div class="col-lg-4" style="border-style: dotted;">
+    <p class="h4 text-center">文献基本信息</p>
+    <p><strong> 题目：</strong><%= @paper.title%></p> 
+    <p><strong> 第一作者：</strong><%= @paper.authorName1%></p> 
+    <p><strong> 第二作者：</strong><%= @paper.authorName2%></p> 
+    <p><strong> 第三作者：</strong><%= @paper.authorName3%></p> 
+    <p><strong> 第四作者：</strong><%= @paper.authorName4%></p>  
+    <p><strong> 第五作者：</strong><%= @paper.authorName5%></p> 
+    <p><strong> 通信作者：</strong><%= @paper.comAuthor%></p> 
+    <p><strong> 通信地址：</strong><%= @paper.comAddr%></p> 
+    <p><strong> 发表年份：</strong><%= @paper.year%></p> 
+    <p><strong> 期刊名：</strong><%= @paper.journal%></p>  
+
+
+  </div>
+</div>
+
+</div>
