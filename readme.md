@@ -4,7 +4,7 @@ A simple tool for paper analysis based on Ruby on Rails, the admin could create 
 **Ruby on Rails version requirements:**
 * Ruby version 2.1.9
 * Rails version 4.2.6
-1. cloning the code from GitHub(https://github.com/Vic-Song/patool):
+1. cloning the code from [GitHub](https://github.com/Vic-Song/patool):
 ```
 git clone https://github.com/Vic-Song/patool
 ```
